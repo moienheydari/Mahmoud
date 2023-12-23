@@ -9,37 +9,18 @@
     max-height: 100vh;
     overflow: auto;
     width: 100%;
-    display: grid;
-    grid-template-columns: minmax(280px, 550px) minmax(320px, 550px);
+
+    display: flex;
+
     justify-content: center;
     align-items: center;
+    
     padding-top: 40px;
     padding-bottom: 50px;
 
     * {
         font-family: 'Poppins', sans-serif;
         transition: 0.5s;
-    }
-
-    .intro {
-        padding-left: 10px;  
-        padding-right: 10px;
-
-        * {
-            margin: 30px;
-        }
-
-        h1 {
-            font-size: 50px;
-            line-height: 50px;
-            color: white;
-        }
-
-        p {
-            font-size: 17px;
-            line-height: 20px;
-            color: white;
-        }
     }
 
     .signup-cont {
