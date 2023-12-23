@@ -16,11 +16,12 @@
     padding-bottom: 20px;
 
     * {
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Space Mono', monospace;
+        font-family: 'Vazirmatn', sans-serif;
         transition: 0.5s;
     }
 
-    .signup-cont {  
+    .signup-cont {
         * {
             padding: 5px 20px 5px 20px;
         }
@@ -28,10 +29,11 @@
         flex-grow: 1;
 
         display: grid;
-        gap: 30px;
+        gap: 25px;
         grid-template-rows: auto auto;
         align-items: center;
         justify-items: center;
+        align-content: center;
 
         padding-bottom: 50px;
 
@@ -51,4 +53,3 @@
 .bold {
     font-weight: bold;
 }
-
