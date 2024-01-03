@@ -96,7 +96,7 @@ export default function SignupField() {
         let zarib = (100 - Number(form.feranshiz)) / 100;
         let jam = Number(form.ekhtelaf) - (Number(form.ekhtelafghal1) + Number(form.ekhtelafghal2) + Number(form.ekhtelafghal3) + Number(form.ekhtelafghal4) + Number(form.ekhtelafghal5) + Number(form.ekhtelafghal6) + Number(form.kharej1) + Number(form.kharej2) + Number(form.kharej3) + Number(form.kharej4) + Number(form.kharej5) + Number(form.kharej6));
         let final = num + (zarib * jam) + Number(form.ekhtelafghal1) + Number(form.ekhtelafghal2) + Number(form.ekhtelafghal3) + Number(form.ekhtelafghal4) + Number(form.ekhtelafghal5) + Number(form.ekhtelafghal6);
-        final = final.toFixed(3);
+        final = Math.round(final);
         final = momNum(final);
         copyToClipboard(final);
         setSum(final);
@@ -108,21 +108,16 @@ export default function SignupField() {
         let len = num.toString().length - 1;
         let counter = 0;
         while (len >= 0) {
-            if (num.toString()[len] == '.') {
-                written = '.' + written;
-                counter = -1;
+            if (counter < 3) {
+                written = num.toString()[len] + written;
             } else {
-                if (counter < 3) {
-                    written = num.toString()[len] + written;
-                } else {
-                    counter = 0;
-                    written = num.toString()[len] + ',' + written;
-                }
+                counter = 0;
+                written = num.toString()[len] + ',' + written;
             }
             counter++;
             len--;
         }
-        return written;
+        return (written != '') ? written : '000' ;
     }
 
     const copyToClipboard = (value) => {
@@ -190,7 +185,7 @@ export default function SignupField() {
                         name='ekhtelaf'
                         type='text'
                         onChange={({ target }) => { setForm(prev => { return { ...prev, [target.name]: target.value } }) }}
-                    ></input> جمع اختلاف</label>
+                    ></input><p>{momNum(form.ekhtelaf)}</p> جمع اختلاف</label>
             </div>
 
             <div id='Ekht-Ghal' className='inputCont'>
@@ -202,7 +197,7 @@ export default function SignupField() {
                         name='ekhtelafghal1'
                         type='text'
                         onChange={({ target }) => { setForm(prev => { return { ...prev, [target.name]: target.value } }) }}
-                    ></input> اختلاف داروی بیمه ای ۱</label>
+                    ></input><p>{momNum(form.ekhtelafghal1)}</p> اختلاف داروی بیمه ای ۱</label>
                 <label className={`label ${(hide.ekht2) ? 'hide' : 'show'}`}>
                     <input
                         className={`inputtext`}
@@ -211,7 +206,7 @@ export default function SignupField() {
                         name='ekhtelafghal2'
                         type='text'
                         onChange={({ target }) => { setForm(prev => { return { ...prev, [target.name]: target.value } }) }}
-                    ></input> اختلاف داروی بیمه ای ۲</label>
+                    ></input><p>{momNum(form.ekhtelafghal2)}</p> اختلاف داروی بیمه ای ۲</label>
                 <label className={`label ${(hide.ekht3) ? 'hide' : 'show'}`}>
                     <input
                         className={`inputtext`}
@@ -221,7 +216,7 @@ export default function SignupField() {
                         type='text'
                         onChange={({ target }) => { setForm(prev => { return { ...prev, [target.name]: target.value } }) }}
                     >
-                    </input> اختلاف داروی بیمه ای ۳</label>
+                    </input><p>{momNum(form.ekhtelafghal3)}</p> اختلاف داروی بیمه ای ۳</label>
                 <label className={`label ${(hide.ekht4) ? 'hide' : 'show'}`}>
                     <input
                         className={`inputtext`}
@@ -231,7 +226,7 @@ export default function SignupField() {
                         type='text'
                         onChange={({ target }) => { setForm(prev => { return { ...prev, [target.name]: target.value } }) }}
                     >
-                    </input> اختلاف داروی بیمه ای ۴</label>
+                    </input><p>{momNum(form.ekhtelafghal4)}</p> اختلاف داروی بیمه ای ۴</label>
                 <label className={`label ${(hide.ekht5) ? 'hide' : 'show'}`}>
                     <input
                         className={`inputtext`}
@@ -241,7 +236,7 @@ export default function SignupField() {
                         type='text'
                         onChange={({ target }) => { setForm(prev => { return { ...prev, [target.name]: target.value } }) }}
                     >
-                    </input> اختلاف داروی بیمه ای ۵</label>
+                    </input><p>{momNum(form.ekhtelafghal5)}</p> اختلاف داروی بیمه ای ۵</label>
                 <label className={`label ${(hide.ekht6) ? 'hide' : 'show'}`}>
                     <input
                         className={`inputtext`}
@@ -251,7 +246,7 @@ export default function SignupField() {
                         type='text'
                         onChange={({ target }) => { setForm(prev => { return { ...prev, [target.name]: target.value } }) }}
                     >
-                    </input> اختلاف داروی بیمه ای ۶</label>
+                    </input><p>{momNum(form.ekhtelafghal6)}</p> اختلاف داروی بیمه ای ۶</label>
             </div>
 
             <div id='Kharej' className='inputCont'>
@@ -264,7 +259,7 @@ export default function SignupField() {
                         type='text'
                         onChange={({ target }) => { setForm(prev => { return { ...prev, [target.name]: target.value } }) }}
                     >
-                    </input>قلم کاملا آزاد ۱</label>
+                    </input><p>{momNum(form.kharej1)}</p>قلم کاملا آزاد ۱</label>
                 <label className={`label ${(hide.kha2) ? 'hide' : 'show'}`}>
                     <input
                         className={`inputtext`}
@@ -274,7 +269,8 @@ export default function SignupField() {
                         type='text'
                         onChange={({ target }) => { setForm(prev => { return { ...prev, [target.name]: target.value } }) }}
                     >
-                    </input>قلم کاملا آزاد ۲</label>
+                    </input><p>{momNum(form.kharej2)}</p>قلم کاملا آزاد ۲</label>
+
                 <label className={`label ${(hide.kha3) ? 'hide' : 'show'}`}>
                     <input
                         className={`inputtext`}
@@ -284,7 +280,8 @@ export default function SignupField() {
                         type='text'
                         onChange={({ target }) => { setForm(prev => { return { ...prev, [target.name]: target.value } }) }}
                     >
-                    </input>قلم کاملا آزاد ۳</label>
+                    </input><p>{momNum(form.kharej3)}</p>قلم کاملا آزاد ۳</label>
+
                 <label className={`label ${(hide.kha4) ? 'hide' : 'show'}`}>
                     <input
                         className={`inputtext`}
@@ -294,7 +291,7 @@ export default function SignupField() {
                         type='text'
                         onChange={({ target }) => { setForm(prev => { return { ...prev, [target.name]: target.value } }) }}
                     >
-                    </input>قلم کاملا آزاد ۴</label>
+                    </input><p>{momNum(form.kharej4)}</p>قلم کاملا آزاد ۴</label>
                 <label className={`label ${(hide.kha5) ? 'hide' : 'show'}`}>
                     <input
                         className={`inputtext`}
@@ -304,7 +301,7 @@ export default function SignupField() {
                         type='text'
                         onChange={({ target }) => { setForm(prev => { return { ...prev, [target.name]: target.value } }) }}
                     >
-                    </input>قلم کاملا آزاد ۵</label>
+                    </input><p>{momNum(form.kharej5)}</p>قلم کاملا آزاد ۵</label>
                 <label className={`label ${(hide.kha6) ? 'hide' : 'show'}`}>
                     <input
                         className={`inputtext`}
@@ -314,7 +311,7 @@ export default function SignupField() {
                         type='text'
                         onChange={({ target }) => { setForm(prev => { return { ...prev, [target.name]: target.value } }) }}
                     >
-                    </input>قلم کاملا آزاد ۶</label>
+                    </input><p>{momNum(form.kharej6)}</p>قلم کاملا آزاد ۶</label>
             </div>
 
             <div id='Sahm' className='inputCont'>
@@ -328,7 +325,7 @@ export default function SignupField() {
                         onKeyDown={handleKeyPress}
                         onChange={({ target }) => { setForm(prev => { return { ...prev, [target.name]: target.value } }) }}
                     >
-                    </input>سهم بیمار</label>
+                    </input><p>{momNum(form.sahm)}</p>سهم بیمار</label>
             </div>
 
             <button onClick={handleClick}>محاسبه</button>
