@@ -117,7 +117,7 @@ export default function SignupField() {
             counter++;
             len--;
         }
-        return (written != '') ? written : '000' ;
+        return (written != '') ? written : '000';
     }
 
     const copyToClipboard = (value) => {
@@ -172,6 +172,14 @@ export default function SignupField() {
                         checked={form.feranshiz == 20}
                         onChange={handleOptionChange}
                     /> 20</label>
+                    <label><input
+                        className='radio'
+                        type='radio'
+                        name='feranshiz'
+                        value={25}
+                        checked={form.feranshiz == 25}
+                        onChange={handleOptionChange}
+                    /> 25</label>
                     <p>درصد فرانشیز</p>
                 </div>
             </div>
