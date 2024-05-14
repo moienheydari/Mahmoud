@@ -144,6 +144,14 @@ export default function SignupField() {
                         className='radio'
                         type='radio'
                         name='feranshiz'
+                        value={0}
+                        checked={form.feranshiz == 0}
+                        onChange={handleOptionChange}
+                    /> 0</label>
+                    <label><input
+                        className='radio'
+                        type='radio'
+                        name='feranshiz'
                         value={5}
                         checked={form.feranshiz == 5}
                         onChange={handleOptionChange}
