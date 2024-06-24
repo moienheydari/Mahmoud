@@ -188,6 +188,14 @@ export default function SignupField() {
                         checked={form.feranshiz == 25}
                         onChange={handleOptionChange}
                     /> 25</label>
+                    <label><input
+                        className='radio'
+                        type='radio'
+                        name='feranshiz'
+                        value={30}
+                        checked={form.feranshiz == 30}
+                        onChange={handleOptionChange}
+                    /> 30</label>
                     <p>درصد فرانشیز</p>
                 </div>
             </div>
